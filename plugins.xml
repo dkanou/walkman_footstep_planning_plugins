@@ -1,0 +1,7 @@
+<library path="lib/libwalkman_footstep_planning_plugins">
+  <class type="walkman_footstep_planning::PatchesStateGenerator" base_class_type="vigir_footstep_planning::StateGeneratorPlugin">
+    <description>
+      PatchesStateGenerator: TODO
+    </description>
+  </class>
+</library>

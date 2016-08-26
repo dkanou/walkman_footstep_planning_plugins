@@ -1,0 +1,5 @@
+patches_state_generator:
+  type_class_package: walkman_footstep_planning_plugins
+  type_class: walkman_footstep_planning::PatchesStateGenerator
+  base_class_package: vigir_footstep_planning_plugins
+  base_class: vigir_footstep_planning::StateGeneratorPlugin
