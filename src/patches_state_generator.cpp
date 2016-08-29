@@ -17,22 +17,39 @@ PatchesStateGenerator::PatchesStateGenerator()
 
 bool PatchesStateGenerator::initialize(const vigir_generic_params::ParameterSet& global_params)
 {
-  return StateGeneratorPlugin::initialize(global_params);
+  if (!StateGeneratorPlugin::initialize(global_params))
+    return false;
+
+  /// Add you initialization here
+
+  return true;
 }
 
 bool PatchesStateGenerator::postInitialize(const vigir_generic_params::ParameterSet& global_params)
 {
-  return StateGeneratorPlugin::postInitialize(global_params);
+  if (!StateGeneratorPlugin::postInitialize(global_params))
+    return false;
+
+  /// Add post initialization here (cross plugin depent stuff)
+
+  return true;
 }
 
 bool PatchesStateGenerator::loadParams(const vigir_generic_params::ParameterSet& global_params)
 {
-  return StateGeneratorPlugin::loadParams(global_params);
+  if (!StateGeneratorPlugin::loadParams(global_params))
+    return false;
+
+  /// Load your parameters here (values from yaml file)
+
+  return true;
 }
 
 void PatchesStateGenerator::reset()
 {
   StateGeneratorPlugin::reset();
+
+  /// Plugin initialization here
 }
 
 std::list<PlanningState::Ptr> PatchesStateGenerator::generatePredecessor(const PlanningState& state) const
@@ -64,7 +81,8 @@ std::list<PlanningState::Ptr> PatchesStateGenerator::generateSuccessor(const Pla
     const State& right_foot = state.getLeg() == RIGHT ? state.getState() : state.getPredState()->getState();
 
     // update 3D pose based on world data
-    WorldModel::instance().update3DData(new_state);
+    /// Add line if patches does not include z, roll and pitch
+    // WorldModel::instance().update3DData(new_state);
 
     // apply post processing steps
     PostProcessor::instance().postProcessForward(left_foot, right_foot, new_state);
